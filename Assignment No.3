@@ -1,0 +1,100 @@
+/*PROBLEM STATEMENT: educational institution system 
+Design an educational Institution that maintains a database of all staff members where 
+the database is segregated into a number of classes having hierarchical relationships. 
+Define all classes with suitable data members and required member functions to build 
+the database and fetch individual details.*/ 
+#include  <iostream> 
+using  namespace  std; 
+//Base Class 
+class  staff 
+{ 
+protected  : 
+string  name  ,  dept  ; 
+long  int  staff_id  ; 
+public  : 
+void  accept  (){ 
+cout<<  "\nEnter name:"  ; 
+cin>>  name  ; 
+cout<<  "Enter department:"  ; 
+cin>>  dept  ; 
+cout<<  "Enter ID:"  ; 
+cin>>  staff_id  ; 
+} 
+void  display  (){ 
+cout<<  "\nName:"  <<  name  ; 
+cout<<  "\nDepartment:"  <<  dept  ; 
+cout<<  "\nStaff ID:"  <<  staff_id  ; 
+} 
+}; 
+//Class teacher is derived from base class staff 
+class  teacher  :  public  staff 
+{ 
+string  sub  ; 
+int  exp  ; 
+public  : 
+void  accept1  (); 
+void  display1  (); 
+}; 
+//Class SupportStaff is derived from base class staff 
+class  SupportStaff  :  public  staff  { 
+string  role  ; 
+string  shift  ; 
+public  : 
+void  accept2  (); 
+void  display2  (); 
+}; 
+void  teacher::accept1  (){ 
+staff  ::accept(); 
+cout<<  "Enter subject:"  ; 
+cin>>  sub  ; 
+cout<<  "Enter experience(in years):"  ; 
+cin>>  exp  ; 
+} 
+void  teacher::display1  (){ 
+staff  ::display(); 
+cout<<  "\nSubject:"  <<  sub  ; 
+cout<<  "\nExperience(in years):"  <<  exp  ; 
+} 
+void  SupportStaff::accept2  () { 
+staff  ::accept(); 
+cout <<  "Enter Role: "  ; 
+cin>>  role  ; 
+cout <<  "Enter Shift (Morning/Evening):  "  ; 
+cin>>  shift  ; 
+} 
+void  SupportStaff:: display2  () { 
+staff  ::display(); 
+cout <<  "\nRole: "  <<  role  ; 
+cout <<  "\nShift: "  <<  shift  ; 
+} 
+int  main  (){ 
+int  n; 
+cout<<  "Enter no. of teachers:"  ; 
+cin>>n; 
+//Create an array of objects for teacher details 
+teacher  t1[n]; 
+for  (  int  i=0;i<n;i++){ 
+cout<<  "\nEnter details for teacher "  <<i+1<<  ":"  ; 
+t1[i].accept1(); 
+} 
+for  (  int  i=0;i<n;i++){ 
+cout<<  "\n------Teachers details------"  ; 
+t1[i].display1(); 
+} 
+int  m; 
+cout<<  "\n"  ; 
+cout<<  "\nEnter no. of Support staff:"  ; 
+cin>>m; 
+//Create an array of objects for Support Staff Details 
+SupportStaff  s[m]; 
+for  (  int  i=0;i<n;i++){ 
+cout<<  "\nEnter details for Support staff "  <<i+1<<  ":"  ; 
+cout<<  "\n"  ; 
+s[i].accept2(); 
+} 
+for  (  int  i=0;i<n;i++){ 
+cout<<  "\n------Support staff details------"  ; 
+s[i].display2(); 
+} 
+return  0; 
+}
