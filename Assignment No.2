@@ -1,0 +1,116 @@
+#include<iostream> 
+using namespace std; 
+class employee 
+{ 
+private: 
+string name; 
+long int emp_id; 
+string dept; 
+string date_of_Join; 
+string address; 
+long int telephone; 
+static int count; 
+public: 
+inline void title();  
+//Inline function 
+employee();  //Default Constructor 
+employee(string n, long int id, string dep, string date, string add, int tele); 
+//Parameterized Construstor 
+employee(employee &obj); //Copy Constructor 
+void display(); 
+void display2(); 
+~employee(); 
+static void displayCount(); 
+}; 
+int employee :: count = 0; 
+employee :: employee() 
+{ 
+string pranali,pune,HR; 
+count++; 
+cout << "Default Constructor Called"; 
+name = pranali; 
+emp_id = 548; 
+dept=HR; 
+date_of_Join = 13/03/2025; 
+address = pune; 
+telephone = 12345678; 
+} 
+void employee :: title() 
+{ 
+cout << "\nWelcome to Employee System: \n"; 
+} 
+employee :: employee(string n, long int id, string dep, string date, string add, int tele) 
+{ 
+cout << "\nParameterized Constructor Called"; 
+name = n; 
+emp_id = id; 
+dept = dep; 
+date_of_Join = date; 
+address = add; 
+telephone = tele; 
+count++; 
+} 
+void employee :: display() 
+{ 
+cout << "\nName of the employee: " << name; 
+cout << "\nEmployee ID : " << emp_id; 
+cout << "\nDepartment of the employee: " << dept; 
+cout << "\nDate of Joining : " << date_of_Join; 
+cout << "\nAddress of employee: " << address; 
+cout << "\nTelephone no. of employee : " << telephone; 
+} 
+employee :: employee(employee &obj) 
+{ 
+name = obj.name; 
+emp_id = obj.emp_id; 
+dept= obj.dept; 
+date_of_Join = obj.date_of_Join; 
+address = obj.address; 
+telephone = obj.telephone; 
+count++; 
+} 
+void employee :: display2() 
+{ 
+cout << "\nCopy constructor Called"; 
+} 
+employee :: ~employee() 
+{ 
+cout << "\nDestructor is called!"; 
+count--; 
+} 
+void employee :: displayCount() 
+{ 
+cout << "\nCount : " << count; 
+} 
+int main() 
+{ 
+employee obj1; 
+obj1.title(); 
+string n; 
+long int id; 
+string dep; 
+string date; 
+string add; 
+int tele; 
+cout << "Enter Name of the employee: "; 
+cin >> n; 
+cout << "Enter employee ID: "; 
+cin >> id; 
+cout << "Enter Department: "; 
+cin >> dep; 
+cout << "Enter date of joining: "; 
+cin >> date; 
+cout << "Enter Address of the employee: "; 
+cin >> add; 
+cout << "Enter telephone no. of the employee: "; 
+cin >> tele; 
+employee obj2(n,id,dep,date,add,tele); 
+obj2.display(); 
+employee obj3 = obj2; 
+obj3.display2(); 
+employee *ptr = new employee(n,id,dep,date,add,tele);  
+ptr -> display(); 
+employee :: displayCount(); 
+delete ptr; 
+return 0; 
+}
