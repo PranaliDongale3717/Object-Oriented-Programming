@@ -1,0 +1,93 @@
+#include <iostream> 
+#include <string> 
+using namespace std; 
+class bank_account { 
+private: 
+string name; 
+string account_type; 
+int account_number; 
+float balance; 
+public: 
+bank_account(string n, string at, int acc, float bal) 
+{ 
+name = n; 
+account_type = at; 
+account_number = acc; 
+balance = bal; 
+} 
+void deposit(float); 
+void withdraw(float); 
+void display(); 
+}; 
+void bank_account::deposit(float amt) { 
+balance += amt; 
+cout << "\n" << amt << " deposited successfully."; 
+} 
+void bank_account::withdraw(float amt) { 
+if (amt <= balance) { 
+balance -= amt; 
+cout << "\n" << amt << " withdrawn successfully."; 
+} else { 
+cout << "\nInsufficient Balance!"; 
+} 
+} 
+void bank_account::display() { 
+cout << "\n~~ Account Details ~~\n"; 
+cout << "Name of the customer: " << name << endl; 
+cout << "Account type: " << account_type << endl; 
+cout << "Account number: " << account_number << endl; 
+cout << "Available balance amount: " << balance << endl; 
+} 
+int main() { 
+int choice, acc; 
+float amount, bal; 
+char ch; 
+float rupees; 
+string n, at; 
+cout << "Enter the account holder name:"; 
+cin.ignore(); 
+getline(cin, n); 
+cout << "Enter account type:"; 
+cin >> at; 
+cout << "Enter account number:"; 
+cin >> acc; 
+cout << "Enter available balance amount:"; 
+cin >> bal; 
+bank_account obj1(n, at, acc, bal); 
+do { 
+cout << "\n----- Bank Account Menu ------\n"; 
+cout << "1. Display Account details\n"; 
+cout << "2. Deposit amount\n"; 
+cout << "3. Withdraw amount\n"; 
+cout << "4. Exit\n"; 
+cout << "Enter your choice: "; 
+cin.clear(); cin.ignore(1000, '\n'); // Fix: flush input buffer 
+cin >> choice; 
+switch (choice) { 
+case 1: 
+cout << "Display account details:\n"; 
+obj1.display(); 
+break; 
+case 2: 
+cout << "Enter deposited amount:\n"; 
+cin >> amount; 
+obj1.deposit(amount); 
+break; 
+case 3: 
+cout << "Enter withdraw amount:\n"; 
+cin >> rupees; 
+obj1.withdraw(rupees); 
+obj1.display(); 
+Break; 
+case 4: 
+cout << "Exit\n"; 
+break; 
+default: 
+cout << "Invalid choice!\n"; 
+break; 
+} 
+cout << "Do you want to continue (Yes/No):"; 
+cin >> ch; 
+} while (ch == 'Y' || ch == 'y'); 
+return 0; 
+}
