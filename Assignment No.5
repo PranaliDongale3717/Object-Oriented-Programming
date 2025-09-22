@@ -1,0 +1,61 @@
+/*PROBLEM STATEMENT: Geometrical Shapes Area calculator (Assignment No.5) 
+Define  the  base  class  Shape  with  two  data  members  of  any  numeric  type  that  are  employed  to 
+compute  the  area  of  respective  shape.  Add  member  functions  to  input  the  data  members  values 
+and  display  the  area  in  base  class  only.  Derive  two  classes  from  base  class  namely,  Triangle  & 
+Rectangle.  Take  the  display  function  as  virtual  in  base  class  and  redefine  it  in  the  derived  classes. 
+Using  above  classes  ,  write  a  program  to  accept  parameters  for  triangle  or  rectangle  and  display 
+the area Using Virtual Functions.*/ 
+#include  <iostream> 
+using  namespace  std; 
+class  shape 
+{ 
+protected  : 
+float  x  ,  y  ; 
+public  : 
+void  getdata  (  float  m,  float  n){ 
+x  =m; 
+y  =n; 
+} 
+virtual  void  display  ()=0; 
+}; 
+class  triangle  :  public  shape 
+{ 
+private  : 
+float  a  ; 
+public  : 
+void  display  (){ 
+a  =0.5*  x  *  y  ; 
+cout<<  "Area of the Triangle:\n"  <<  a  <<  endl  ; 
+} 
+}; 
+class  rectangle  :  public  shape 
+{ 
+private  : 
+float  a  ; 
+public  : 
+void  display  (){ 
+a  =  x  *  y  ; 
+cout<<  "Area of the Rectangle:\n"  <<  a  <<  endl  ; 
+} 
+}; 
+int  main  (){ 
+shape  * ptr; 
+triangle  t ; 
+rectangle  r; 
+float  b,h; 
+cout<<  "Enter the base of the Triangle:"  <<  endl  ; 
+cin>>b; 
+cout<<  "Enter the height of the Triangle:"  <<  endl  ; 
+cin>>h; 
+t .getdata(b,h); 
+ptr=& t ; 
+ptr->display(); 
+cout<<  "\nEnter length of the Rectangle:"  <<  endl  ; 
+cin>>b; 
+cout<<  "Enter breadth of the Rectangle:"  <<  endl  ; 
+cin>>h; 
+r.getdata(b,h); 
+ptr=&r; 
+ptr->display(); 
+return  0; 
+}
