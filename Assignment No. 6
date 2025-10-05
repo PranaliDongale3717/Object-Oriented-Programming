@@ -1,0 +1,50 @@
+/*ASSIGNMENT NO. 6
+PROBLEM STATEMENT: Exception Handling 
+Design a program with the following functionalities:
+1. A function to read two numbers(Double type)
+2. A function to calculate division of these two numbers
+3. A try block to detect and throw an exception when divide by zero condition occurs
+4. Appropriate catch block to handle the exception thrown*/
+
+PROGRAM:
+#include <iostream>
+#include <exception>
+using namespace std;
+
+class Test : public exception {
+public:
+   double num1;
+   double num2;
+   void accept();
+   void division();
+   const char* what() {
+       return "Divide By Zero Exception\n";
+   }
+};
+
+void Test::accept() {
+   cout << "Enter first number: "<<endl;
+   cin >> num1;
+   cout << "Enter second number: "<<endl;
+   cin >> num2;
+}
+
+void Test::division() {
+   cout << "Division of two numbers: " << num1 / num2 << endl;
+}
+
+int main() {
+   Test t;
+   try {
+       t.accept();
+       if (t.num2 == 0) {
+           throw t; // Throw the Test class object if num2 is zero
+       } else {
+           t.division(); // Perform division if num2 is not zero
+       }
+   } 
+   catch (Test& a) { // Catch the custom exception by reference
+       cout << a.what(); // Print the exception message
+   }
+   return 0; 
+}
