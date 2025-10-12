@@ -1,0 +1,68 @@
+/*Assignment No. 7
+TITLE:Sequential Files Operations
+PROBLEM STATEMENT: Develop a system that defines inventory class with suitable
+data members and member functions. Perform read and write operations using class
+objects.*/
+
+
+PROGRAM:
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+class Inventory
+{
+	string item;
+	int q,id;
+	float price;
+public:
+	void accept();
+	void display();
+};
+void Inventory::accept(){
+	
+	cout<<"Enter name of the item: ";
+	cin>>item;
+	cout<<"Enter item ID: ";
+	cin>>id;
+	cout<<"Enter quantity: ";
+	cin>>q;
+	cout<<"Enter price: ";
+	cin>>price;
+	cout<<"\n";
+}
+void Inventory::display(){
+	cout<<"-----Material Details------\n";
+	cout<<"Name of the item: "<<item<<endl;
+	cout<<"ID: "<<id<<endl;
+	cout<<"Quantity: "<<q<<endl;
+	cout<<"Price: "<<price<<endl;
+	cout<<"\n";
+}
+int main()
+{
+	ofstream file_obj;
+	int n;
+	cout<<"Enter no. of Materials: ";
+	cin>>n;
+	Inventory obj[n];
+	cout<<"\nEnter material details\n";
+	for(int i=0;i<n;i++){
+		obj[i].accept();
+		file_obj.open("Input.txt");
+		file_obj.write((char*)& obj[i],sizeof(obj[i]));
+		file_obj.close();
+	}
+	ifstream file_obj2;
+	for(int i=0;i<n;i++){
+			file_obj2.open("Input.txt");
+			file_obj2.read((char*)& obj[i],sizeof(obj[i]));
+			obj[i].display();
+			file_obj2.close();
+	}
+return 0;
+}
+
+
+
+
